@@ -1,5 +1,5 @@
 import React from "react";
-import ActionAreaCard from "../../components/commons/List Ingredients";
+import ActionAreaCard from "../../components/commons/List ingredient";
 
 function Ingredients(props) {
   const list = [
