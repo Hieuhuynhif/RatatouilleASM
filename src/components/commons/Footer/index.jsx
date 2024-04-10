@@ -1,7 +1,11 @@
-import { Stack } from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 
 function Footer() {
-  return <Stack height={"10vh"}></Stack>;
+  return (
+    <Stack height={"10vh"}>
+      <Divider />
+    </Stack>
+  );
 }
 
 export default Footer;

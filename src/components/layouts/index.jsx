@@ -1,15 +1,17 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Drawer, Stack } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../commons/Footer";
 import Header from "../commons/Header";
 import Menu from "../commons/Menu";
 
 function Layout() {
+  const [openMenu, setOpenMenu] = useState(false);
   return (
     <Stack minHeight={"100vh"}>
       {/* header */}
-      <Header />
+      <Header openMenu={() => setOpenMenu(!openMenu)} />
       {/* menu */}
       <Grid container width={"100vw"}>
         <Grid xs={0} lg={3} sx={{ display: { xs: "none", lg: "block" } }}>
@@ -28,20 +30,25 @@ function Layout() {
             maxWidth={false}
             sx={{
               mt: "8vh",
-              p:2,
-              minHeight:"85vh"
+              p: 2,
+              minHeight: "85vh",
             }}
           >
             <Outlet />
           </Container>
           {/* Footer */}
           <Grid>
-            <Container maxWidth="false" sx={{ bgcolor: "#888" }}>
+            <Container maxWidth="false">
               <Footer />
             </Container>
           </Grid>
         </Grid>
       </Grid>
+      <Drawer open={openMenu} onClose={() => setOpenMenu(false)}>
+        <Box width={{ xs: "70vw", sm: "50vw", md: "30vw" }}>
+          <Menu closeMenu={() => setOpenMenu(false)} />
+        </Box>
+      </Drawer>
     </Stack>
   );
 }
