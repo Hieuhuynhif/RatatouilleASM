@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { DragHandle, Logout } from "@mui/icons-material";
+import { AccountCircle, DragHandle, Logout } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -85,10 +85,10 @@ function Header(props) {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+          <ListItemIcon>
+            <AccountCircle />
+          </ListItemIcon>
+          My account
         </MenuItem>
         <Divider />
 
