@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ActionAreaCard from "../../components/commons/List ingredient";
+import { Box, Button, Dialog } from "@mui/material";
+import CreateIngredientForm from "../../components/forms/CreateIngredientForm";
 
 function Ingredients(props) {
   const list = [
@@ -84,8 +86,15 @@ function Ingredients(props) {
       price: "100000",
     },
   ];
+  const [open,setOpen] = useState(false)
   return (
     <>
+      <Button type="submit" onClick={()=>setOpen(true)}>add</Button>
+      <Dialog onClose={()=>setOpen(false)} open={open}>
+          <Box margin = {'5%'}>
+              <CreateIngredientForm/>
+          </Box>
+      </Dialog>
       <ActionAreaCard ingredients={list} />
     </>
   );
