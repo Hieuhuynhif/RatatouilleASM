@@ -6,27 +6,27 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
-CreateIngredientForm.propTypes = {
-    handleCreate: PropTypes.func,
+AdjustAssetForm.propTypes = {
+    handleAdjust: PropTypes.func,
+    item : PropTypes.object,
 };
 
-function CreateIngredientForm(props) {
+function AdjustAssetForm(props) {
     //   const { handleCreate, autoGenId } = props;
+    const {item} = props;
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm({
         defaultValues: {
-            id: "123",
-            name: "",
-            des: "",
-            quantity: 0,
-            price: 0,
-            importDate: "",
-            expiredDate: "",
-            type: "Ingredient",
-        },
+            id: item.id,
+            name: item.name,
+            des: item.des,
+            quantity: item.quantity,
+            price: item.price,
+            type: "Asset",
+        }
     });
     return (
         <form onSubmit={handleSubmit((value) => console.log(value))}>
@@ -108,40 +108,10 @@ function CreateIngredientForm(props) {
                     error={!!errors.price}
                     helperText={errors.price?.message}
                 />
-                <Stack direction={'row'} justifyContent={'space-between'}>
-                    <TextField
-                        //name="importedDate"
-                        label="Imported date"
-                        InputLabelProps={{ shrink: true, required: true }}
-                        type="date"
-                        {...register("importDate",{
-                            required : "required",
-                            validate : (value)=>{
-                                if (dayjs().isBefore(value)) return "Invalid imported date"
-                            }
-                        })}
-                        error = {!!errors.importDate}
-                        helperText = {errors.importDate?.message}
-                    />
-                    <TextField
-                        //name="expiredDate"
-                        label="Expired date"
-                        InputLabelProps={{ shrink: true, required: true }}
-                        type="date"
-                        {...register("expiredDate", {
-                            required : "required",
-                            validate : (value)=>{
-                                if (dayjs().isAfter(value)) return "Invalid expired date"
-                            }
-                        })}
-                        error={!!errors.expiredDate}
-                        helperText={errors.expiredDate?.message}
-                    />
-                </Stack>
                 <Button type="submit">Submit</Button>
             </Stack>
         </form>
     );
 }
 
-export default CreateIngredientForm;
+export default AdjustAssetForm;

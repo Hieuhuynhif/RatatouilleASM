@@ -6,27 +6,29 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
-CreateIngredientForm.propTypes = {
-    handleCreate: PropTypes.func,
+AdjustIngredientForm.propTypes = {
+    handleAdjust: PropTypes.func,
+    item : PropTypes.object,
 };
 
-function CreateIngredientForm(props) {
+function AdjustIngredientForm(props) {
     //   const { handleCreate, autoGenId } = props;
+    const {item} = props;
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm({
         defaultValues: {
-            id: "123",
-            name: "",
-            des: "",
-            quantity: 0,
-            price: 0,
-            importDate: "",
-            expiredDate: "",
+            id: item.id,
+            name: item.name,
+            des: item.des,
+            quantity: item.quantity,
+            price: item.price,
+            importDate: item.imp_date,
+            expiredDate: item.exp_date,
             type: "Ingredient",
-        },
+        }
     });
     return (
         <form onSubmit={handleSubmit((value) => console.log(value))}>
@@ -111,6 +113,8 @@ function CreateIngredientForm(props) {
                 <Stack direction={'row'} justifyContent={'space-between'}>
                     <TextField
                         //name="importedDate"
+                        disabled
+                        variant="filled"
                         label="Imported date"
                         InputLabelProps={{ shrink: true, required: true }}
                         type="date"
@@ -125,6 +129,8 @@ function CreateIngredientForm(props) {
                     />
                     <TextField
                         //name="expiredDate"
+                        disabled
+                        variant="filled"
                         label="Expired date"
                         InputLabelProps={{ shrink: true, required: true }}
                         type="date"
@@ -144,4 +150,4 @@ function CreateIngredientForm(props) {
     );
 }
 
-export default CreateIngredientForm;
+export default AdjustIngredientForm;

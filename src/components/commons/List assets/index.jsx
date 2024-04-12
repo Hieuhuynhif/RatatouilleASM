@@ -14,13 +14,14 @@ import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 import { pink, red } from "@mui/material/colors";
 import AdjustIngredientForm from "../../forms/AdjustIngredientForm";
+import AdjustAssetForm from "../../forms/AdjustAssetForm";
 
-ActionAreaCard.propTypes = {
-  ingredients: PropTypes.arrayOf(Object), //no need to pass param, call API
+ActionAreaCardAssets.propTypes = {
+  assets: PropTypes.arrayOf(Object), //no need to pass param, call API
 };
 
-export default function ActionAreaCard(props) {
-  const { ingredients } = props; //call API and useEffect
+export default function ActionAreaCardAssets(props) {
+  const { assets } = props; //call API and useEffect
 
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +35,7 @@ export default function ActionAreaCard(props) {
   const getPageData = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return ingredients.slice(startIndex, endIndex);
+    return assets.slice(startIndex, endIndex);
   };
 
   const getDetail = (item) => {
@@ -103,7 +104,7 @@ export default function ActionAreaCard(props) {
                 <CardMedia
                   component="img"
                   height="140"
-                  image="src\assets\p1.jpg" //item.pic instead
+                  image="src\assets\p1.jpg"
                   alt="green iguana"
                 />
                 <CardContent>
@@ -111,13 +112,7 @@ export default function ActionAreaCard(props) {
                     Id: {item.id}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Quantity: {item.quantity} kg
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Import date: {item.imp_date}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Expiry date: {item.exp_date}
+                    Quantity: {item.quantity}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Price: {item.price} VND
@@ -131,7 +126,7 @@ export default function ActionAreaCard(props) {
       <Stack spacing={2} alignItems={"end"} mt={2}>
         <Pagination
           color="primary"
-          count={Math.ceil(ingredients.length / itemsPerPage)} // Total number of pages
+          count={Math.ceil(assets.length / itemsPerPage)} // Total number of pages
           page={currentPage}
           onChange={handlePageChange}
           defaultPage={1}
@@ -142,7 +137,7 @@ export default function ActionAreaCard(props) {
       </Stack>
       <Dialog onClose={() => setOpenDetail(false)} open={openDetail}>
         <Box margin={'5%'}>
-          <AdjustIngredientForm item={curItem} />
+          <AdjustAssetForm item={curItem} />
         </Box>
       </Dialog>
     </Box>

@@ -6,11 +6,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
-CreateIngredientForm.propTypes = {
+CreateAssetForm.propTypes = {
     handleCreate: PropTypes.func,
 };
 
-function CreateIngredientForm(props) {
+function CreateAssetForm(props) {
     //   const { handleCreate, autoGenId } = props;
     const {
         register,
@@ -23,9 +23,7 @@ function CreateIngredientForm(props) {
             des: "",
             quantity: 0,
             price: 0,
-            importDate: "",
-            expiredDate: "",
-            type: "Ingredient",
+            type: "Asset",
         },
     });
     return (
@@ -108,40 +106,10 @@ function CreateIngredientForm(props) {
                     error={!!errors.price}
                     helperText={errors.price?.message}
                 />
-                <Stack direction={'row'} justifyContent={'space-between'}>
-                    <TextField
-                        //name="importedDate"
-                        label="Imported date"
-                        InputLabelProps={{ shrink: true, required: true }}
-                        type="date"
-                        {...register("importDate",{
-                            required : "required",
-                            validate : (value)=>{
-                                if (dayjs().isBefore(value)) return "Invalid imported date"
-                            }
-                        })}
-                        error = {!!errors.importDate}
-                        helperText = {errors.importDate?.message}
-                    />
-                    <TextField
-                        //name="expiredDate"
-                        label="Expired date"
-                        InputLabelProps={{ shrink: true, required: true }}
-                        type="date"
-                        {...register("expiredDate", {
-                            required : "required",
-                            validate : (value)=>{
-                                if (dayjs().isAfter(value)) return "Invalid expired date"
-                            }
-                        })}
-                        error={!!errors.expiredDate}
-                        helperText={errors.expiredDate?.message}
-                    />
-                </Stack>
                 <Button type="submit">Submit</Button>
             </Stack>
         </form>
     );
 }
 
-export default CreateIngredientForm;
+export default CreateAssetForm;
