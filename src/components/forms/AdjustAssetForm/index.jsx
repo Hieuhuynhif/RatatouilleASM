@@ -6,14 +6,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+
+
 AdjustAssetForm.propTypes = {
     handleAdjust: PropTypes.func,
-    item : PropTypes.object,
+    item: PropTypes.object,
 };
 
 function AdjustAssetForm(props) {
     //   const { handleCreate, autoGenId } = props;
-    const {item} = props;
+    const { item } = props;
     const {
         register,
         handleSubmit,
@@ -26,6 +29,7 @@ function AdjustAssetForm(props) {
             quantity: item.quantity,
             price: item.price,
             type: "Asset",
+            pic: "src\\asset\\p1.jpg",
         }
     });
     return (
@@ -107,6 +111,12 @@ function AdjustAssetForm(props) {
                     })}
                     error={!!errors.price}
                     helperText={errors.price?.message}
+                />
+                <Input
+                    required
+                    label="Image"
+                    type="file"
+                    {...register("pic")}
                 />
                 <Button type="submit">Submit</Button>
             </Stack>
