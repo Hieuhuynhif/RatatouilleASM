@@ -26,7 +26,7 @@ import NumbersIcon from "@mui/icons-material/Numbers";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
 import MonetizationOnSharpIcon from "@mui/icons-material/MonetizationOnSharp";
-
+import { existsSync } from "fs";
 ListIngredient.propTypes = {
   ingredients: PropTypes.arrayOf(Object), //no need to pass param, call API
 };
@@ -114,7 +114,7 @@ export default function ListIngredient(props) {
                 <CardMedia
                   component="img"
                   height="140"
-                  image="src\assets\p1.jpg" //item.pic instead
+                  image={()=> {return existsSync("src/asset/"+item.name+".png")? "src/asset/"+item.name+".png": "src/asset/p1.jpg"}}
                   alt="green iguana"
                 />
                 <CardContent>
