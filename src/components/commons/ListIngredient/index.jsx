@@ -1,25 +1,26 @@
 import { MoreVert } from "@mui/icons-material";
+import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
+import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 import { CardActionArea, CardHeader, Dialog, IconButton, Menu, MenuItem } from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
+// import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { red } from "@mui/material/colors";
+import PropTypes from "prop-types";
 import { useState } from "react";
-import InfoSharpIcon from '@mui/icons-material/InfoSharp';
-import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
-import { pink, red } from "@mui/material/colors";
 import AdjustIngredientForm from "../../forms/AdjustIngredientForm";
 
-ActionAreaCard.propTypes = {
+ListIngredient.propTypes = {
   ingredients: PropTypes.arrayOf(Object), //no need to pass param, call API
 };
 
-export default function ActionAreaCard(props) {
+export default function ListIngredient(props) {
   const { ingredients } = props; //call API and useEffect
 
   const itemsPerPage = 5;
@@ -32,9 +33,9 @@ export default function ActionAreaCard(props) {
   };
 
   const getPageData = () => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return ingredients.slice(startIndex, endIndex);
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // return ingredients.slice(startIndex, endIndex);
   };
 
   const getDetail = (item) => {
@@ -59,7 +60,7 @@ export default function ActionAreaCard(props) {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {getPageData().map((item) => (
+        {ingredients?.map((item) => (
           <Grid item xs={2} sm={4} md={4} key={item.name}>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
@@ -114,13 +115,13 @@ export default function ActionAreaCard(props) {
                     Quantity: {item.quantity} kg
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Import date: {item.imp_date}
+                    Import date: {item.importDate}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Expiry date: {item.exp_date}
+                    Expiry date: {item.expiredDate}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Price: {item.price} VND
+                    Price: {item.pricePerUnit} VND
                   </Typography>
                 </CardContent>
               </CardActionArea>

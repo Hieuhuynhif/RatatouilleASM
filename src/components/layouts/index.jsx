@@ -1,5 +1,5 @@
-import { Box, Container, Drawer, Stack } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Box, Container, Drawer, Grid, Stack } from "@mui/material";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../commons/Footer";
@@ -13,8 +13,8 @@ function Layout() {
       {/* header */}
       <Header openMenu={() => setOpenMenu(!openMenu)} />
       {/* menu */}
-      <Grid container width={"100vw"}>
-        <Grid xs={0} lg={3} sx={{ display: { xs: "none", lg: "block" } }}>
+      <Grid2 container width={"100vw"}>
+        <Grid2 xs={0} lg={3} sx={{ display: { xs: "none", lg: "block" } }}>
           <Box
             position={"sticky"}
             // zIndex={20}
@@ -23,9 +23,9 @@ function Layout() {
           >
             <Menu />
           </Box>
-        </Grid>
+        </Grid2>
         {/* page */}
-        <Grid xs={12} lg={9}>
+        <Grid2 xs={12} lg={9}>
           <Container
             maxWidth={false}
             sx={{
@@ -37,13 +37,13 @@ function Layout() {
             <Outlet />
           </Container>
           {/* Footer */}
-          <Grid>
+          <Grid2>
             <Container maxWidth="false">
               <Footer />
             </Container>
-          </Grid>
-        </Grid>
-      </Grid>
+          </Grid2>
+        </Grid2>
+      </Grid2>
       <Drawer open={openMenu} onClose={() => setOpenMenu(false)}>
         <Box width={{ xs: "70vw", sm: "50vw", md: "30vw" }}>
           <Menu closeMenu={() => setOpenMenu(false)} />

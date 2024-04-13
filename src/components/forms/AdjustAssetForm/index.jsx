@@ -112,12 +112,12 @@ function AdjustAssetForm(props) {
                     error={!!errors.price}
                     helperText={errors.price?.message}
                 />
-                <Input
+                {/* <Input
                     required
                     label="Image"
                     type="file"
                     {...register("pic")}
-                />
+                /> */}
                 <Button type="submit">Submit</Button>
             </Stack>
         </form>

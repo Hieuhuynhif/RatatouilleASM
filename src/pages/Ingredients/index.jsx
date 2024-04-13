@@ -1,104 +1,25 @@
-import React, { useState } from "react";
-import ActionAreaCard from "../../components/commons/List ingredient";
 import { Box, Button, Dialog, Stack } from "@mui/material";
-import CreateIngredientForm from "../../components/forms/CreateIngredientForm";
 import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import axiosClient from "../../app/axiosClient.js";
+import CreateIngredientForm from "../../components/forms/CreateIngredientForm";
+import ListIngredient from "../../components/commons/ListIngredient/index.jsx";
 
 function Ingredients(props) {
+  const [ingredients, setIngredient] = useState([])
   const list = [
     {
-      name: "Cá ngừ",
-      pic: "/sdfhbs/sdfdshjb",
-      quantity: "12",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Cá hồi",
-      pic: "fvjnxf/fgbjkfnbd",
-      quantity: "25",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Cá saba",
-      pic: "",
-      quantity: "8",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Cá lóc",
-      pic: "",
-      quantity: "5",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Cá Bống",
-      pic: "",
-      quantity: "35",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Thịt heo",
-      pic: "",
-      quantity: "65",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Thịt bò",
-      pic: "",
-      quantity: "65",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Thịt gà",
-      pic: "",
-      quantity: "9",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Thịt cừu",
-      pic: "",
-      quantity: "6",
-      exp_date: dayjs().format("YYYY-MM-DD"),
-      imp_date: dayjs().format("YYYY-MM-DD"),
-      price: "100000",
-      des: "",
-      id: "123",
+
+      "pricePerUnit": 1,
+      "description": "Crisp green lettuce leaves",
+      "quantity": 50,
+      "name": "Lettuce",
+      "importDate": "2024-04-02",
+      "expiredDate": "2024-04-10",
+      "image": null
     },
     {
       name: "Cua hoàng đế",
-      pic: "",
       quantity: "19",
       exp_date: dayjs().format("YYYY-MM-DD"),
       imp_date: dayjs().format("YYYY-MM-DD"),
@@ -108,17 +29,28 @@ function Ingredients(props) {
     },
   ];
   const [open, setOpen] = useState(false)
+
+  const getIngredients = async () => {
+    const ingredients = await axiosClient.get('ingredients');
+    setIngredient(ingredients.data)
+  }
+
+  useEffect(() => {
+    getIngredients();
+  }, [])
+
+
   return (
     <>
       <Stack direction={'row'} justifyContent={'end'}>
         <Button variant="contained" onClick={() => setOpen(true)}>add</Button>
         <Dialog onClose={() => setOpen(false)} open={open}>
           <Box margin={'5%'}>
-            <CreateIngredientForm/>
+            <CreateIngredientForm />
           </Box>
         </Dialog>
       </Stack>
-      <ActionAreaCard ingredients={list} />
+      <ListIngredient ingredients={ingredients} />
     </>
   );
 }
