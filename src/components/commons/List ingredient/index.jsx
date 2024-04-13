@@ -121,10 +121,10 @@ export default function ActionAreaCard(props) {
                     Quantity: {item.quantity} kg
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Import date: {item.imp_date}
+                    <strong>Import date: {item.imp_date}</strong>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Expiry date: {item.exp_date}
+                    <strong>Expiry date: {item.exp_date}</strong>
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Price: {item.price} VND

@@ -110,7 +110,7 @@ export default function ActionAreaCardAssets(props) {
                 <CardMedia
                   component="img"
                   height="140"
-                  image="src\assets\table.jpg"
+                  image="src\assets\furniture.png"
                   alt="green iguana"
                   sx={{ objectFit: "contain" }}
                 />

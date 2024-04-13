@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Box, Button, Dialog, Stack } from '@mui/material';
-import CreateAssetForm from '../../components/forms/CreateAssetFrom';
-import ActionAreaCardAssets from '../../components/commons/List assets';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Box, Button, Dialog, Stack } from "@mui/material";
+import CreateAssetForm from "../../components/forms/CreateAssetFrom";
+import ActionAreaCardAssets from "../../components/commons/List assets";
 
 function Tools(props) {
   const list = [
     {
-      name: "Cá ngừ",
+      name: "Bàn ăn",
       pic: "/sdfhbs/sdfdshjb",
       quantity: "12",
 
@@ -16,7 +16,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Cá hồi",
+      name: "Ghế",
       pic: "fvjnxf/fgbjkfnbd",
       quantity: "25",
 
@@ -25,7 +25,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Cá saba",
+      name: "Chén ăn",
       pic: "",
       quantity: "8",
 
@@ -34,7 +34,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Cá lóc",
+      name: "Muỗng",
       pic: "",
       quantity: "5",
 
@@ -43,7 +43,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Cá Bống",
+      name: "Thìa",
       pic: "",
       quantity: "35",
 
@@ -52,7 +52,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Thịt heo",
+      name: "Đũa",
       pic: "",
       quantity: "65",
 
@@ -61,7 +61,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Thịt bò",
+      name: "Dao",
       pic: "",
       quantity: "65",
 
@@ -70,7 +70,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Thịt gà",
+      name: "Kéo",
       pic: "",
       quantity: "9",
 
@@ -79,7 +79,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Thịt cừu",
+      name: "Hũ gia vị",
       pic: "",
       quantity: "6",
 
@@ -88,7 +88,7 @@ function Tools(props) {
       id: "123",
     },
     {
-      name: "Cua hoàng đế",
+      name: "Nồi",
       pic: "",
       quantity: "19",
 
@@ -97,22 +97,24 @@ function Tools(props) {
       id: "123",
     },
   ];
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <Stack direction={'row'} justifyContent={'end'}>
-        <Button variant="contained" onClick={() => setOpen(true)}>add</Button>
-        <Dialog onClose={()=>setOpen(false)} open ={open}>
-          <Box margin={'5%'}>
-            <CreateAssetForm/>
+      <Stack direction={"row"} justifyContent={"end"}>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          add
+        </Button>
+        <Dialog onClose={() => setOpen(false)} open={open}>
+          <Box margin={"5%"}>
+            <CreateAssetForm />
           </Box>
         </Dialog>
       </Stack>
-      <ActionAreaCardAssets assets={list}/>
+      <ActionAreaCardAssets assets={list} />
     </>
-  )
+  );
 }
 
-Tools.propTypes = {}
+Tools.propTypes = {};
 
-export default Tools
+export default Tools;
