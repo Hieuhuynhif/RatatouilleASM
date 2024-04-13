@@ -1,11 +1,7 @@
-import { Button, Input, InputAdornment, Stack, TextField } from "@mui/material";
-import { Controller, useForm } from "react-hook-form";
+import { Button, InputAdornment, Stack, TextField } from "@mui/material";
+import { useForm } from "react-hook-form";
 
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import PropTypes from "prop-types";
-import dayjs from "dayjs";
 CreateAssetForm.propTypes = {
     handleCreate: PropTypes.func,
 };
@@ -20,31 +16,17 @@ function CreateAssetForm(props) {
         defaultValues: {
             id: "123",
             name: "",
-            des: "",
+            description: "",
             quantity: 0,
-            price: 0,
-            type: "Asset",
+            pricePerUnit: 0,
+            image: null
+
         },
     });
     return (
-        <form onSubmit={handleSubmit((value) => console.log(value))}>
+        <form onSubmit={handleSubmit}>
             <Stack spacing={5}>
-                <Stack direction={"row"} spacing={'20%'} justifyContent={"space-between"}>
-                    <TextField
-                        disabled
-                        variant="filled"
-                        //id="outlined-disabled"
-                        label="ID"
-                        {...register("id")}
-                    />
-                    <TextField
-                        //disabled
-                        disabled
-                        variant="filled"
-                        label="Type"
-                        {...register("type")}
-                    />
-                </Stack>
+
                 <Stack
                     justifyContent={"space-between"}
                     direction={"row"}

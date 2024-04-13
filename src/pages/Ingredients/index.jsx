@@ -2,8 +2,8 @@ import { Box, Button, Dialog, Stack } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import axiosClient from "../../app/axiosClient.js";
-import CreateIngredientForm from "../../components/forms/CreateIngredientForm";
 import ListIngredient from "../../components/commons/ListIngredient/index.jsx";
+import CreateIngredientForm from "../../components/forms/CreateIngredientForm";
 
 function Ingredients(props) {
   const [ingredients, setIngredient] = useState([])
@@ -34,6 +34,11 @@ function Ingredients(props) {
     const ingredients = await axiosClient.get('ingredients');
     setIngredient(ingredients.data)
   }
+  const handleCreateIngredient = async (payload) => {
+    await axiosClient.post('ingredients', payload);
+    getIngredients()
+    setOpen(false)
+  }
 
   useEffect(() => {
     getIngredients();
@@ -46,7 +51,7 @@ function Ingredients(props) {
         <Button variant="contained" onClick={() => setOpen(true)}>add</Button>
         <Dialog onClose={() => setOpen(false)} open={open}>
           <Box margin={'5%'}>
-            <CreateIngredientForm />
+            <CreateIngredientForm handleCreate={handleCreateIngredient} />
           </Box>
         </Dialog>
       </Stack>

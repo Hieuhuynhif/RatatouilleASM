@@ -1,4 +1,6 @@
 import { MoreVert } from "@mui/icons-material";
+import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
+import InfoSharpIcon from "@mui/icons-material/InfoSharp";
 import {
   CardActionArea,
   CardHeader,
@@ -12,15 +14,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { red } from "@mui/material/colors";
+import PropTypes from "prop-types";
 import { useState } from "react";
-import InfoSharpIcon from "@mui/icons-material/InfoSharp";
-import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
-import { pink, red } from "@mui/material/colors";
-import AdjustIngredientForm from "../../forms/AdjustIngredientForm";
 import AdjustAssetForm from "../../forms/AdjustAssetForm";
 
 ActionAreaCardAssets.propTypes = {
@@ -49,7 +48,7 @@ export default function ActionAreaCardAssets(props) {
     setCurItem(item);
     setOpenDetail(true);
   };
-  const deleteItem = () => {};
+  const deleteItem = () => { };
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -59,6 +58,7 @@ export default function ActionAreaCardAssets(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -122,7 +122,7 @@ export default function ActionAreaCardAssets(props) {
                     Quantity: {item.quantity}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Price: {item.price} VND
+                    Price: {item.pricePerUnit} VND
                   </Typography>
                 </CardContent>
               </CardActionArea>

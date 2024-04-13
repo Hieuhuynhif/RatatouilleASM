@@ -1,102 +1,27 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Box, Button, Dialog, Stack } from "@mui/material";
-import CreateAssetForm from "../../components/forms/CreateAssetFrom";
+import React, { useEffect, useState } from "react";
+import axiosClient from "../../app/axiosClient";
 import ActionAreaCardAssets from "../../components/commons/List assets";
+import CreateAssetForm from "../../components/forms/CreateAssetFrom";
 
 function Tools(props) {
-  const list = [
-    {
-      name: "Bàn ăn",
-      pic: "/sdfhbs/sdfdshjb",
-      quantity: "12",
+  const [tools, setTools] = useState([])
 
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Ghế",
-      pic: "fvjnxf/fgbjkfnbd",
-      quantity: "25",
+  const getTools = async () => {
+    const tools = await axiosClient.get('assets');
+    setTools(tools.data)
+  }
+  const handleCreateTool = async (payload) => {
+    await axiosClient.post('assets', payload);
+    getTools()
+    setOpen(false)
+  }
 
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Chén ăn",
-      pic: "",
-      quantity: "8",
+  useEffect(() => {
+    getTools();
+  }, [])
 
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Muỗng",
-      pic: "",
-      quantity: "5",
 
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Thìa",
-      pic: "",
-      quantity: "35",
-
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Đũa",
-      pic: "",
-      quantity: "65",
-
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Dao",
-      pic: "",
-      quantity: "65",
-
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Kéo",
-      pic: "",
-      quantity: "9",
-
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Hũ gia vị",
-      pic: "",
-      quantity: "6",
-
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-    {
-      name: "Nồi",
-      pic: "",
-      quantity: "19",
-
-      price: "100000",
-      des: "",
-      id: "123",
-    },
-  ];
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -106,11 +31,11 @@ function Tools(props) {
         </Button>
         <Dialog onClose={() => setOpen(false)} open={open}>
           <Box margin={"5%"}>
-            <CreateAssetForm />
+            <CreateAssetForm handleCreate={handleCreateTool}/>
           </Box>
         </Dialog>
       </Stack>
-      <ActionAreaCardAssets assets={list} />
+      <ActionAreaCardAssets assets={tools} />
     </>
   );
 }

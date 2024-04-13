@@ -1,51 +1,35 @@
-import { Button, Input, InputAdornment, Stack, TextField } from "@mui/material";
-import { Controller, useForm } from "react-hook-form";
+import { Button, InputAdornment, Stack, TextField } from "@mui/material";
+import { useForm } from "react-hook-form";
 
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import PropTypes from "prop-types";
 import dayjs from "dayjs";
+import PropTypes from "prop-types";
 CreateIngredientForm.propTypes = {
     handleCreate: PropTypes.func,
 };
 
 function CreateIngredientForm(props) {
-    //   const { handleCreate, autoGenId } = props;
+    const { handleCreate } = props;
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm({
         defaultValues: {
-            id: "123",
-            name: "",
-            des: "",
+            pricePerUnit: 0,
+            description: "",
             quantity: 0,
-            price: 0,
+            name: "",
             importDate: "",
             expiredDate: "",
-            type: "Ingredient",
+            image: null
         },
     });
     return (
-        <form onSubmit={handleSubmit((value) => console.log(value))}>
+        <form onSubmit={handleSubmit(handleCreate)}>
             <Stack spacing={5}>
                 <Stack direction={"row"} spacing={'20%'} justifyContent={"space-between"}>
-                    <TextField
-                        disabled
-                        variant="filled"
-                        //id="outlined-disabled"
-                        label="ID"
-                        {...register("id")}
-                    />
-                    <TextField
-                        //disabled
-                        disabled
-                        variant="filled"
-                        label="Type"
-                        {...register("type")}
-                    />
+
+
                 </Stack>
                 <Stack
                     justifyContent={"space-between"}
@@ -85,7 +69,7 @@ function CreateIngredientForm(props) {
                     rows={5}
                     //focused
                     placeholder="Fill the description"
-                    {...register("des")}
+                    {...register("description")}
                 />
 
                 <TextField
@@ -99,7 +83,7 @@ function CreateIngredientForm(props) {
                         shrink: true,
                     }}
                     defaultValue={0}
-                    {...register("price", {
+                    {...register("pricePerUnit", {
                         required: "required",
                         validate: (value) => {
                             if (value < 0) return "Price can not be negative";
@@ -114,14 +98,14 @@ function CreateIngredientForm(props) {
                         label="Imported date"
                         InputLabelProps={{ shrink: true, required: true }}
                         type="date"
-                        {...register("importDate",{
-                            required : "required",
-                            validate : (value)=>{
+                        {...register("importDate", {
+                            required: "required",
+                            validate: (value) => {
                                 if (dayjs().isBefore(value)) return "Invalid imported date"
                             }
                         })}
-                        error = {!!errors.importDate}
-                        helperText = {errors.importDate?.message}
+                        error={!!errors.importDate}
+                        helperText={errors.importDate?.message}
                     />
                     <TextField
                         //name="expiredDate"
@@ -129,8 +113,8 @@ function CreateIngredientForm(props) {
                         InputLabelProps={{ shrink: true, required: true }}
                         type="date"
                         {...register("expiredDate", {
-                            required : "required",
-                            validate : (value)=>{
+                            required: "required",
+                            validate: (value) => {
                                 if (dayjs().isAfter(value)) return "Invalid expired date"
                             }
                         })}
