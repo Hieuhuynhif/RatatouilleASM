@@ -7,7 +7,7 @@ CreateAssetForm.propTypes = {
 };
 
 function CreateAssetForm(props) {
-    //   const { handleCreate, autoGenId } = props;
+      const { handleCreate } = props;
     const {
         register,
         handleSubmit,
@@ -24,7 +24,7 @@ function CreateAssetForm(props) {
         },
     });
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleCreate)}>
             <Stack spacing={5}>
 
                 <Stack
