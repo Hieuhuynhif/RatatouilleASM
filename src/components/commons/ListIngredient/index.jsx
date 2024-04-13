@@ -61,7 +61,7 @@ export default function ListIngredient(props) {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {ingredients?.map((item) => (
-          <Grid item xs={2} sm={4} md={4} key={item.name}>
+          <Grid xs={2} sm={4} md={4} key={item.name}>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
                 action={
