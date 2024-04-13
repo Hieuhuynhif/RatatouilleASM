@@ -24,7 +24,7 @@ import { red } from "@mui/material/colors";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import AdjustAssetForm from "../../forms/AdjustAssetForm";
-
+import { existsSync } from "fs";
 ActionAreaCardAssets.propTypes = {
   assets: PropTypes.arrayOf(Object), //no need to pass param, call API
 };
@@ -51,7 +51,7 @@ export default function ActionAreaCardAssets(props) {
     setCurItem(item);
     setOpenDetail(true);
   };
-  const deleteItem = () => { };
+  const deleteItem = () => {};
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -61,7 +61,6 @@ export default function ActionAreaCardAssets(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -113,7 +112,11 @@ export default function ActionAreaCardAssets(props) {
                 <CardMedia
                   component="img"
                   height="140"
-                  image="src\assets\furniture.png"
+                  image={() => {
+                    return existsSync("src/asset/" + item.name + ".png")
+                      ? "src/asset/" + item.name + ".png"
+                      : "src/assets/furniture.png";
+                  }}
                   alt="green iguana"
                   sx={{ objectFit: "contain" }}
                 />

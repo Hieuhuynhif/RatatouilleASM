@@ -114,7 +114,11 @@ export default function ListIngredient(props) {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={()=> {return existsSync("src/asset/"+item.name+".png")? "src/asset/"+item.name+".png": "src/asset/p1.jpg"}}
+                  image={() => {
+                    return existsSync("src/asset/" + item.name + ".png")
+                      ? "src/asset/" + item.name + ".png"
+                      : "src/asset/default_i.png";
+                  }}
                   alt="green iguana"
                 />
                 <CardContent>
