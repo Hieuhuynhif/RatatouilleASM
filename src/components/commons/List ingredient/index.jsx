@@ -1,5 +1,12 @@
 import { MoreVert } from "@mui/icons-material";
-import { CardActionArea, CardHeader, Dialog, IconButton, Menu, MenuItem } from "@mui/material";
+import {
+  CardActionArea,
+  CardHeader,
+  Dialog,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -10,8 +17,8 @@ import PropTypes from "prop-types";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
-import InfoSharpIcon from '@mui/icons-material/InfoSharp';
-import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
+import InfoSharpIcon from "@mui/icons-material/InfoSharp";
+import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
 import { pink, red } from "@mui/material/colors";
 import AdjustIngredientForm from "../../forms/AdjustIngredientForm";
 
@@ -24,8 +31,8 @@ export default function ActionAreaCard(props) {
 
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-  const [openDetail, setOpenDetail] = useState(false)
-  const [curItem, setCurItem] = useState(null)
+  const [openDetail, setOpenDetail] = useState(false);
+  const [curItem, setCurItem] = useState(null);
 
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
@@ -38,10 +45,10 @@ export default function ActionAreaCard(props) {
   };
 
   const getDetail = (item) => {
-    setCurItem(item)
-    setOpenDetail(true)
-  }
-  const deleteItem = () => { }
+    setCurItem(item);
+    setOpenDetail(true);
+  };
+  const deleteItem = () => {};
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -73,12 +80,12 @@ export default function ActionAreaCard(props) {
                       open={open}
                       onClose={handleClose}
                       MenuListProps={{
-                        'aria-labelledby': 'long-button',
+                        "aria-labelledby": "long-button",
                       }}
                     >
                       <MenuItem
                         onClick={() => {
-                          getDetail(item)
+                          getDetail(item);
                         }}
                       >
                         <InfoSharpIcon color="primary" />
@@ -86,7 +93,7 @@ export default function ActionAreaCard(props) {
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
-                          deleteItem()
+                          deleteItem();
                         }}
                       >
                         <DeleteForeverSharpIcon sx={{ color: red[500] }} />
@@ -96,7 +103,6 @@ export default function ActionAreaCard(props) {
                   </>
                 }
                 title={item.name.toUpperCase()}
-
               />
 
               <CardActionArea>
@@ -105,6 +111,7 @@ export default function ActionAreaCard(props) {
                   height="140"
                   image="src\assets\p1.jpg" //item.pic instead
                   alt="green iguana"
+                  sx={{ objectFit: "contain" }}
                 />
                 <CardContent>
                   <Typography variant="body2" color="text.secondary">
@@ -141,11 +148,10 @@ export default function ActionAreaCard(props) {
         />
       </Stack>
       <Dialog onClose={() => setOpenDetail(false)} open={openDetail}>
-        <Box margin={'5%'}>
+        <Box margin={"5%"}>
           <AdjustIngredientForm item={curItem} />
         </Box>
       </Dialog>
     </Box>
-
   );
 }
