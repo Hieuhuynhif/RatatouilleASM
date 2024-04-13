@@ -22,6 +22,9 @@ import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
 import { pink, red } from "@mui/material/colors";
 import AdjustIngredientForm from "../../forms/AdjustIngredientForm";
 import AdjustAssetForm from "../../forms/AdjustAssetForm";
+import NumbersIcon from "@mui/icons-material/Numbers";
+import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
+import MonetizationOnSharpIcon from "@mui/icons-material/MonetizationOnSharp";
 
 ActionAreaCardAssets.propTypes = {
   assets: PropTypes.arrayOf(Object), //no need to pass param, call API
@@ -116,12 +119,15 @@ export default function ActionAreaCardAssets(props) {
                 />
                 <CardContent>
                   <Typography variant="body2" color="text.secondary">
+                    <NumbersIcon sx={{ fontSize: "0.75rem" }} />
                     Id: {item.id}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
+                    <ShoppingCartSharpIcon sx={{ fontSize: "0.75rem" }} />
                     Quantity: {item.quantity}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
+                    <MonetizationOnSharpIcon sx={{ fontSize: "0.75rem" }} />
                     Price: {item.price} VND
                   </Typography>
                 </CardContent>

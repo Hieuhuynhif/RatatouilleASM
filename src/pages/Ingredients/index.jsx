@@ -6,17 +6,16 @@ import CreateIngredientForm from "../../components/forms/CreateIngredientForm";
 import ListIngredient from "../../components/commons/ListIngredient/index.jsx";
 
 function Ingredients(props) {
-  const [ingredients, setIngredient] = useState([])
+  const [ingredients, setIngredient] = useState([]);
   const list = [
     {
-
-      "pricePerUnit": 1,
-      "description": "Crisp green lettuce leaves",
-      "quantity": 50,
-      "name": "Lettuce",
-      "importDate": "2024-04-02",
-      "expiredDate": "2024-04-10",
-      "image": null
+      pricePerUnit: 1,
+      description: "Crisp green lettuce leaves",
+      quantity: 50,
+      name: "Lettuce",
+      importDate: "2024-04-02",
+      expiredDate: "2024-04-10",
+      image: null,
     },
     {
       name: "Cua hoàng đế",
@@ -28,29 +27,30 @@ function Ingredients(props) {
       id: "123",
     },
   ];
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const getIngredients = async () => {
-    const ingredients = await axiosClient.get('ingredients');
-    setIngredient(ingredients.data)
-  }
+    const ingredients = await axiosClient.get("ingredients");
+    setIngredient(ingredients.data);
+  };
 
   useEffect(() => {
     getIngredients();
-  }, [])
-
+  }, []);
 
   return (
     <>
-      <Stack direction={'row'} justifyContent={'end'}>
-        <Button variant="contained" onClick={() => setOpen(true)}>add</Button>
+      <Stack direction={"row"} justifyContent={"end"}>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          add
+        </Button>
         <Dialog onClose={() => setOpen(false)} open={open}>
-          <Box margin={'5%'}>
+          <Box margin={"5%"}>
             <CreateIngredientForm />
           </Box>
         </Dialog>
       </Stack>
-      <ListIngredient ingredients={ingredients} />
+      <ListIngredient ingredients={list} />
     </>
   );
 }

@@ -1,7 +1,14 @@
 import { MoreVert } from "@mui/icons-material";
-import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
-import InfoSharpIcon from '@mui/icons-material/InfoSharp';
-import { CardActionArea, CardHeader, Dialog, IconButton, Menu, MenuItem } from "@mui/material";
+import DeleteForeverSharpIcon from "@mui/icons-material/DeleteForeverSharp";
+import InfoSharpIcon from "@mui/icons-material/InfoSharp";
+import {
+  CardActionArea,
+  CardHeader,
+  Dialog,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -15,6 +22,10 @@ import { red } from "@mui/material/colors";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import AdjustIngredientForm from "../../forms/AdjustIngredientForm";
+import NumbersIcon from "@mui/icons-material/Numbers";
+import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
+import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";
+import MonetizationOnSharpIcon from "@mui/icons-material/MonetizationOnSharp";
 
 ListIngredient.propTypes = {
   ingredients: PropTypes.arrayOf(Object), //no need to pass param, call API
@@ -25,8 +36,8 @@ export default function ListIngredient(props) {
 
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-  const [openDetail, setOpenDetail] = useState(false)
-  const [curItem, setCurItem] = useState(null)
+  const [openDetail, setOpenDetail] = useState(false);
+  const [curItem, setCurItem] = useState(null);
 
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
@@ -39,10 +50,10 @@ export default function ListIngredient(props) {
   };
 
   const getDetail = (item) => {
-    setCurItem(item)
-    setOpenDetail(true)
-  }
-  const deleteItem = () => { }
+    setCurItem(item);
+    setOpenDetail(true);
+  };
+  const deleteItem = () => {};
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -74,12 +85,12 @@ export default function ListIngredient(props) {
                       open={open}
                       onClose={handleClose}
                       MenuListProps={{
-                        'aria-labelledby': 'long-button',
+                        "aria-labelledby": "long-button",
                       }}
                     >
                       <MenuItem
                         onClick={() => {
-                          getDetail(item)
+                          getDetail(item);
                         }}
                       >
                         <InfoSharpIcon color="primary" />
@@ -87,7 +98,7 @@ export default function ListIngredient(props) {
                       </MenuItem>
                       <MenuItem
                         onClick={() => {
-                          deleteItem()
+                          deleteItem();
                         }}
                       >
                         <DeleteForeverSharpIcon sx={{ color: red[500] }} />
@@ -97,7 +108,6 @@ export default function ListIngredient(props) {
                   </>
                 }
                 title={item.name.toUpperCase()}
-
               />
 
               <CardActionArea>
@@ -109,18 +119,23 @@ export default function ListIngredient(props) {
                 />
                 <CardContent>
                   <Typography variant="body2" color="text.secondary">
+                    <NumbersIcon sx={{ fontSize: "0.75rem" }} />
                     Id: {item.id}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Quantity: {item.quantity} kg
+                    <ShoppingCartSharpIcon sx={{ fontSize: "0.75rem" }} />
+                    Quantity: {item.quantity}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
+                    <CalendarMonthSharpIcon sx={{ fontSize: "0.75rem" }} />
                     Import date: {item.importDate}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
+                    <CalendarMonthSharpIcon sx={{ fontSize: "0.75rem" }} />
                     Expiry date: {item.expiredDate}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
+                    <MonetizationOnSharpIcon sx={{ fontSize: "0.75rem" }} />
                     Price: {item.pricePerUnit} VND
                   </Typography>
                 </CardContent>
@@ -142,11 +157,10 @@ export default function ListIngredient(props) {
         />
       </Stack>
       <Dialog onClose={() => setOpenDetail(false)} open={openDetail}>
-        <Box margin={'5%'}>
+        <Box margin={"5%"}>
           <AdjustIngredientForm item={curItem} />
         </Box>
       </Dialog>
     </Box>
-
   );
 }
